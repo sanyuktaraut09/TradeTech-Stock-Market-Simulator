@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio - TradeTech{% endblock %}
+
+{% block content %}
+<h2>My Portfolio</h2>
+
+<section class="portfolio-summary">
+    <div class="summary-card">
+        <h3>Total Investment</h3>
+        <p>${{ portfolio.total_investment }}</p>
+    </div>
+    
+    <div class="summary-card">
+        <h3>Current Value</h3>
+        <p>${{ portfolio.current_value }}</p>
+    </div>
+    
+    <div class="summary-card">
+        <h3>Return %</h3>
+        <p>{{ portfolio.return_percentage }}%</p>
+    </div>
+</section>
+
+<section class="holdings">
+    <h3>Current Holdings</h3>
+    <table class="portfolio-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Quantity</th>
+                <th>Avg Cost</th>
+                <th>Current Price</th>
+                <th>Current Value</th>
+                <th>Gain/Loss</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for holding in portfolio.holdings %}
+            <tr>
+                <td>{{ holding.symbol }}</td>
+                <td>{{ holding.quantity }}</td>
+                <td>${{ holding.avg_cost }}</td>
+                <td>${{ holding.current_price }}</td>
+                <td>${{ holding.current_value }}</td>
+                <td class="{% if holding.gain_loss >= 0 %}gain{% else %}loss{% endif %}">
+                    {{ holding.gain_loss }}
+                </td>
+                <td>
+                    <button class="btn btn-primary">Sell</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

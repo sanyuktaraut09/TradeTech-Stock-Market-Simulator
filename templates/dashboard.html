@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - TradeTech{% endblock %}
+
+{% block content %}
+<h2>Dashboard</h2>
+
+<section class="dashboard-overview">
+    <div class="card">
+        <h3>Account Balance</h3>
+        <p class="balance">${{ user.balance }}</p>
+    </div>
+    
+    <div class="card">
+        <h3>Portfolio Value</h3>
+        <p class="value">${{ user.portfolio_value }}</p>
+    </div>
+    
+    <div class="card">
+        <h3>Total Gain/Loss</h3>
+        <p class="gain-loss">{{ user.total_gain_loss }}</p>
+    </div>
+</section>
+
+<section class="market-section">
+    <h3>Market Overview</h3>
+    <table class="stock-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Price</th>
+                <th>Change</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Stock data will be populated here -->
+        </tbody>
+    </table>
+</section>
+
+<section class="trading-section">
+    <h3>Quick Trade</h3>
+    <form id="trading-form">
+        <input type="text" placeholder="Stock Symbol" required>
+        <input type="number" placeholder="Quantity" required>
+        <button type="submit" class="btn btn-success">Buy</button>
+        <button type="button" class="btn btn-danger">Sell</button>
+    </form>
+</section>
+{% endblock %}
